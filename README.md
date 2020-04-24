@@ -11,8 +11,12 @@
 
 ## 功能
 
-* 让子元素等比例缩放以撑满容器的宽或者高
-* 让子元素在缩放之后, 水平垂直居中与容器中
+* 让元素等比例缩放以撑满其父容器的宽或者高
+* 让元素缩放之后是水平垂直居中于父容器的
+
+## 使用方法
+
+推荐将 [dist/zoom.js](./dist/zoom.js) 内嵌到 `<head>` 中
 
 ## 示例
 
@@ -23,4 +27,5 @@ var element = document.querySelect('.foo');
 new Zoom(element);
 ```
 
-详见 [API 文档](https://doc.esdoc.org/github.com/ufologist/zoom)
+* [等比例缩放适配示例](https://ghcdn.rawgit.org/ufologist/zoom/master/test/zoom.html)
+* [API 文档](https://ghcdn.rawgit.org/ufologist/zoom/master/docs/index.html)

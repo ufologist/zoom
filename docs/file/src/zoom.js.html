@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/zoom.js | zoom.js</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="&#x7B49;&#x6BD4;&#x4F8B;&#x7F29;&#x653E;&#x9002;&#x914D;"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="zoom.js"><meta property="twitter:description" content="&#x7B49;&#x6BD4;&#x4F8B;&#x7F29;&#x653E;&#x9002;&#x914D;"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/ufologist/zoom"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zoom.js~Zoom.html">Zoom</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/zoom.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * &#x7B49;&#x6BD4;&#x4F8B;&#x7F29;&#x653E;&#x9002;&#x914D;
+ */
+class Zoom {
+    /**
+     * @param {Element} element
+     * @param {object} [options={}]
+     * @param {number} [options.elementWidth] &#x5143;&#x7D20;&#x7684;&#x5BBD;&#x5EA6;(&#x753B;&#x5E03;&#x7684;&#x5BBD;&#x5EA6;)
+     * @param {number} [options.elementHeight] &#x5143;&#x7D20;&#x7684;&#x9AD8;&#x5EA6;(&#x753B;&#x5E03;&#x7684;&#x9AD8;&#x5EA6;)
+     * @param {boolean} [options.center=true] &#x662F;&#x5426;&#x9700;&#x8981;&#x6C34;&#x5E73;&#x5782;&#x76F4;&#x5C45;&#x4E2D;
+     */
+    constructor(element, options = {}) {
+        this.element = element;
+        this.options = options;
+
+        if (typeof this.options.elementWidth === &apos;undefined&apos;) {
+            this.options.elementWidth = this.element.clientWidth;
+        }
+        if (typeof this.options.elementHeight === &apos;undefined&apos;) {
+            this.options.elementHeight = this.element.clientHeight;
+        }
+        if (typeof this.options.center === &apos;undefined&apos;) {
+            this.options.center = true;
+        }
+
+        this.scale();
+    }
+
+    /**
+     * &#x7B49;&#x6BD4;&#x4F8B;&#x7F29;&#x653E;
+     */
+    scale() {
+        // &#x6CE8;&#x610F;: &#x7236;&#x5143;&#x7D20;&#x7684; display &#x5C5E;&#x6027;&#x4F1A;&#x5F71;&#x54CD;&#x5230;&#x5B50;&#x5143;&#x7D20;&#x7684; scale, &#x4F8B;&#x5982;&#x8BBE;&#x7F6E;&#x4E3A; inline-flex &#x65F6;
+        var containerEl = this.element.parentNode;
+        var containerWidth = containerEl.clientWidth;
+        var containerHeight = containerEl.clientHeight;
+        var elementWidth = this.options.elementWidth;
+        var elementHeight = this.options.elementHeight;
+
+        var dim = getScaleRect(containerWidth, containerHeight, elementWidth, elementHeight);
+
+        containerEl.style.overflow = &apos;hidden&apos;;
+
+        this.element.style.width = elementWidth + &apos;px&apos;;
+        this.element.style.height = elementHeight + &apos;px&apos;;
+        this.element.style.transformOrigin = this.element.style.webkitTransformOrigin = &apos;0 0&apos;;
+        this.element.style.transform = this.element.style.webkitTransform = &apos;scale(&apos; + dim.width / elementWidth + &apos;,&apos; + dim.height / elementHeight + &apos;)&apos;;
+
+        if (this.options.center) {
+            containerEl.style.position = &apos;relative&apos;;
+
+            this.element.style.position = &apos;absolute&apos;;
+            this.element.style.top = &apos;50%&apos;;
+            this.element.style.left = &apos;50%&apos;;
+            var transform = this.element.style.transform || this.element.style.webkitTransform;
+            this.element.style.transform = this.element.style.webkitTransform = transform + &apos; translate(-50%,-50%)&apos;;
+        }
+    }
+}
+
+/**
+ * &#x83B7;&#x53D6;&#x7B49;&#x6BD4;&#x7F29;&#x653E;&#x540E;&#x7684;&#x5BBD;&#x9AD8;
+ * 
+ * @param {number} containerWidth 
+ * @param {number} containerHeight 
+ * @param {number} contentWidth 
+ * @param {number} contentHeight 
+ * @return {object}
+ */
+function getScaleRect(containerWidth, containerHeight, contentWidth, contentHeight) {
+    var aspect = contentWidth / contentHeight;
+
+    // &#x4F18;&#x5148;&#x9AD8;&#x5EA6;&#x6491;&#x6EE1;&#x5BB9;&#x5668;
+    var height = containerHeight;
+    var width = height * aspect;
+    // &#x5982;&#x679C;&#x653E;&#x4E0D;&#x4E0B;, &#x5C31;&#x6539;&#x4E3A;&#x5BBD;&#x5EA6;&#x6491;&#x6EE1;&#x5BB9;&#x5668;
+    if (width &gt; containerWidth || height &gt; containerHeight) {
+        width = containerWidth;
+        height = width / aspect;
+    }
+
+    return {
+        width: width,
+        height: height
+    };
+}
+
+export default Zoom;</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

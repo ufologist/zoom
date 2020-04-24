@@ -1,0 +1,15 @@
+{
+  "coverage": "66.66%",
+  "expectCount": 6,
+  "actualCount": 4,
+  "files": {
+    "src/zoom.js": {
+      "expectCount": 6,
+      "actualCount": 4,
+      "undocumentLines": [
+        13,
+        14
+      ]
+    }
+  }
+}
