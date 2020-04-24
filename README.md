@@ -11,6 +11,8 @@
 
 等比例缩放适配
 
+![适配示例](https://user-images.githubusercontent.com/167221/80206541-132db880-865f-11ea-9bd1-c6a1e93992c6.png)
+
 ## 功能
 
 * 让元素等比例缩放以撑满其父容器的宽或者高
