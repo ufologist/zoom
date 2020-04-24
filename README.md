@@ -1,7 +1,9 @@
 # zoom.js
 
-[![changelog][changelog-image]][changelog-url] [![license][license-image]][license-url]
+[![NPM version][npm-image]][npm-url] [![changelog][changelog-image]][changelog-url] [![license][license-image]][license-url]
 
+[npm-image]: https://img.shields.io/npm/v/zoom.js.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/zoom.js
 [license-image]: https://img.shields.io/github/license/ufologist/zoom.svg
 [license-url]: https://github.com/ufologist/zoom/blob/master/LICENSE
 [changelog-image]: https://img.shields.io/badge/CHANGE-LOG-blue.svg?style=flat-square

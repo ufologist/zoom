@@ -25,4 +25,22 @@ export default [{
         babelPlugin,
         uglify()
     ]
+}, {
+    input: input,
+    output: {
+        file: 'dist/zoom.common.js',
+        format: 'cjs'
+    },
+    plugins: [
+        babelPlugin
+    ]
+}, {
+    input: input,
+    output: {
+        file: 'dist/zoom.esm.js',
+        format: 'esm'
+    },
+    plugins: [
+        babelPlugin
+    ]
 }];
