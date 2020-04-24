@@ -24,7 +24,7 @@
 
 ```javascript
 // 要适配的元素
-var element = document.querySelect('.foo');
+var element = document.querySelector('.foo');
 // 等比例缩放适配
 new Zoom(element);
 ```
