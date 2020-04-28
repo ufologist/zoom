@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>等比例缩放适配示例</title>
+    <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+    .demo__container {
+        height: 100%;
+        background-color: #eee;
+    }
+    .demo__link {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+    }
+
+    .container {
+        width: 800px;
+        height: 400px;
+        background-color: #ee3a4c;
+        position: relative;
+    }
+
+    .eyebox {
+        position: absolute;
+        top: 66px;
+        left: 250px;
+    }
+
+    .eye {
+        height: 100px;
+        width: 100px;
+        background-color: #ee3a4c;
+        border: 4px solid white;
+        border-radius: 100%;
+        display: inline-block;
+        margin: 0 20px;
+        position: relative;
+        overflow: hidden;
+    }
+    .eye .pupil {
+        height: 25px;
+        width: 25px;
+        border-radius: 100%;
+        display: inline-block;
+        background-color: white;
+        position: absolute;
+        margin-left: -10px;
+        left: 50px;
+        margin: 10px;
+    }
+
+    .smile {
+        height: 100px;
+        width: 200px;
+        border-radius: 0 0 200px 200px;
+        background: #770f1a;
+        overflow: hidden;
+        transition: all .4s;
+        transform-origin: 0 0;
+        position: absolute;
+        top: 200px;
+        left: 300px;
+    }
+    .smile .teeth {
+        background-color: #fff;
+        transition: all .4s;
+        height: 33.33333px;
+        width: 33.33333px;
+        margin-left: 56.66667px;
+        position: relative;
+    }
+    .smile .teeth:after {
+        content: "";
+        background-color: #fff;
+        height: 33.33333px;
+        width: 33.33333px;
+        position: absolute;
+        left: 50px;
+        top: 0;
+        z-index: 10000;
+    }
+    .smile .tongue {
+        transition: all .4s;
+        height: 100px;
+        width: 100px;
+        background-color: pink;
+        border-radius: 100%;
+        margin-top: 40px;
+        margin-left: 15px;
+        display: inline-block;
+        position: relative;
+    }
+    .smile .tongue:after {
+        content: '';
+        height: 100px;
+        width: 100px;
+        background-color: pink;
+        border-radius: 100%;
+        display: inline-block;
+        position: absolute;
+        left: 50px;
+    }
+    </style>
+</head>
+<body>
+    <h1 class="demo__link">等比例缩放适配示例 by <a href="https://github.com/ufologist/zoom">Zoom</a></h1>
+    <div class="demo__container">
+        <!-- https://www.html5tricks.com/demo/html5-css3-smile-face/index.html -->
+        <div class="container">
+            <div class="eyebox">
+                <div class="eye EL"><div class="pupil" style="top: 39px; left: 50px;"></div></div>
+                <div class="eye ER"><div class="pupil" style="top: 39px; left: 50px;"></div></div>
+            </div>
+            <div class="smile">
+                <div class="teeth"></div>
+                <div class="tongue"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../dist/zoom.js"></script>
+    <script>
+    (function() {
+        var zoom = new Zoom(document.querySelector('.container'));
+        window.onresize = function() {
+            zoom.scale();
+        };
+    })();
+    </script>
+</body>
+</html>
