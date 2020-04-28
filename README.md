@@ -37,7 +37,8 @@ var element = document.querySelector('.foo');
 new Zoom(element);
 ```
 
-* [等比例缩放适配示例](https://ghcdn.rawgit.org/ufologist/zoom/master/test/zoom.html)
+* [等比例缩放适配测试示例](https://ghcdn.rawgit.org/ufologist/zoom/master/test/zoom.html)
+* [等比例缩放适配示例](https://ghcdn.rawgit.org/ufologist/zoom/master/test/face.html)
 * [API 文档](https://ghcdn.rawgit.org/ufologist/zoom/master/docs/index.html)
 
 ## 参考
