@@ -52,3 +52,4 @@ new Zoom(element);
 * [大数据可视化交互系统](https://www.raykite.com/productDetail/pro)
 * [数据可视化-大屏](https://zhuanlan.zhihu.com/p/58762212)
 * [CSS Grid Generator](https://github.com/sdras/cssgridgenerator "块状(网格)布局")
+* [BI数据大屏的实践](https://github.com/hzzly/credit-bi-react)
