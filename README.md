@@ -48,6 +48,7 @@ new Zoom(element);
 * [百度云-数据大屏](https://cloud.baidu.com/product/sugar.html)
 * [网易七鱼-数据大屏](https://qiyukf.com/datamonitor)
 * [网易有数-数据大屏](https://youdata.163.com/index/screen)
+* [即视可视化-安全快速搭建企业数据大屏 ](https://arena.360.cn/)
 * [帆软-数据大屏](https://www.fanruan.com/finemax)
 * [大数据可视化交互系统](https://www.raykite.com/productDetail/pro)
 * [数据可视化-大屏](https://zhuanlan.zhihu.com/p/58762212)
